@@ -1,0 +1,16 @@
+F:\Visual Studio 2022\repos\Currency Calc\bin\Debug\Currency Calc.exe.config
+F:\Visual Studio 2022\repos\Currency Calc\bin\Debug\Currency Calc.exe
+F:\Visual Studio 2022\repos\Currency Calc\bin\Debug\Currency Calc.pdb
+F:\Visual Studio 2022\repos\Currency Calc\obj\Debug\Currency Calc.csproj.AssemblyReference.cache
+F:\Visual Studio 2022\repos\Currency Calc\obj\Debug\Currency Calc.csproj.SuggestedBindingRedirects.cache
+F:\Visual Studio 2022\repos\Currency Calc\obj\Debug\MainWindow.g.cs
+F:\Visual Studio 2022\repos\Currency Calc\obj\Debug\App.g.cs
+F:\Visual Studio 2022\repos\Currency Calc\obj\Debug\Currency Calc_MarkupCompile.cache
+F:\Visual Studio 2022\repos\Currency Calc\obj\Debug\Currency Calc_MarkupCompile.lref
+F:\Visual Studio 2022\repos\Currency Calc\obj\Debug\MainWindow.baml
+F:\Visual Studio 2022\repos\Currency Calc\obj\Debug\Currency Calc.g.resources
+F:\Visual Studio 2022\repos\Currency Calc\obj\Debug\Currency_Calc.Properties.Resources.resources
+F:\Visual Studio 2022\repos\Currency Calc\obj\Debug\Currency Calc.csproj.GenerateResource.cache
+F:\Visual Studio 2022\repos\Currency Calc\obj\Debug\Currency Calc.csproj.CoreCompileInputs.cache
+F:\Visual Studio 2022\repos\Currency Calc\obj\Debug\Currency Calc.exe
+F:\Visual Studio 2022\repos\Currency Calc\obj\Debug\Currency Calc.pdb
