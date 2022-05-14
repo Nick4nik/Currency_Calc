@@ -60,14 +60,14 @@
                     <TextBox Grid.Column="3" Name="Amount" MaxLength="6" TextChanged="Amount_TextChanged" FontSize="25" HorizontalContentAlignment="Left" VerticalContentAlignment="Center"/>
                 </Grid>
 
-                <Label Grid.Row="5" Grid.Column="0" Name="TransferFromName" Visibility="Hidden" HorizontalContentAlignment="Left" VerticalContentAlignment="Center"/>
-                <Label Grid.Row="5" Grid.Column="1" Name="TransferFromAmount" Visibility="Hidden" HorizontalContentAlignment="Left" VerticalContentAlignment="Center"/>
+                <Label Grid.Row="5" Grid.Column="0" Name="TransferFromAmount" Visibility="Hidden" HorizontalContentAlignment="Left" VerticalContentAlignment="Center"/>
+                <Label Grid.Row="5" Grid.Column="1" Name="TransferFromName" Visibility="Hidden" HorizontalContentAlignment="Left" VerticalContentAlignment="Center"/>
                 <Label Grid.Row="5" Grid.Column="2" Name="TransferToName" Visibility="Hidden" HorizontalContentAlignment="Left" VerticalContentAlignment="Center"/>
                 <Label Grid.Row="5" Grid.Column="3" Name="Transfer" Visibility="Hidden" HorizontalContentAlignment="Left" VerticalContentAlignment="Center"/>
 
                 <TextBox Grid.Row="6" Grid.Column="1" Name="TransferFrom" MaxLength="3" CharacterCasing="Upper" GotFocus="Lang" TextChanged="TransferFrom_TextChanged" KeyDown="TransferFrom_KeyDown" HorizontalContentAlignment="Left" VerticalContentAlignment="Center"/>
                 <TextBox Grid.Row="6" Grid.Column="3" Name="TransferTo" MaxLength="3" CharacterCasing="Upper" GotFocus="Lang" TextChanged="TransferTo_TextChanged" KeyDown="TransferTo_KeyDown" HorizontalContentAlignment="Left" VerticalContentAlignment="Center"/>
-                <TextBox Grid.Row="6" Grid.Column="5" Name="TransferAmount" TextChanged="TransferAmount_TextChanged" Text="Amount:" MaxLength="5" CharacterCasing="Upper" KeyDown="TransferAmount_KeyDown" HorizontalContentAlignment="Left" VerticalContentAlignment="Center"/>
+                <TextBox Grid.Row="6" Grid.Column="5" Name="TransferAmount" LostFocus="TransferAmount_LostFocus" TextChanged="TransferAmount_TextChanged" Text="Amount:" MaxLength="5" CharacterCasing="Upper" KeyDown="TransferAmount_KeyDown" HorizontalContentAlignment="Left" VerticalContentAlignment="Center"/>
 
                 <Label Grid.Row="6" Grid.Column="0" Content="Transfer from:" HorizontalContentAlignment="Left" VerticalContentAlignment="Center"/>
                 <Label Grid.Row="6" Grid.Column="2" Content="Transfer to:" HorizontalContentAlignment="Left" VerticalContentAlignment="Center"/>

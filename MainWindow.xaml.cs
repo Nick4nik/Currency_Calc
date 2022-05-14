@@ -145,29 +145,43 @@ namespace Currency_Calc
         }
 
 
+        private void TransferAmount_LostFocus(object sender, RoutedEventArgs e)
+        {
+            if (String.IsNullOrEmpty(TransferAmount.Text))
+            {
+                TransferAmount.Text = "Amount:";
+            }
+        }
+
         private void TransferAmount_TextChanged(object sender, TextChangedEventArgs e)
         {
-            if (TransferAmount.Equals("Amount:"))
+            if (String.IsNullOrEmpty(TransferAmount.Text))
             {
-                Transfer.Content = TransferFromAmount.Content = null;
+                TransferFromAmount.Content = Transfer.Content = null;
                 Transfer.Visibility = TransferFromAmount.Visibility = Visibility.Hidden;
                 return;
             }
-            else if (TransferAmount.Text.Length == 0)
-            {
-                Transfer.Content = TransferFromAmount.Content = null;
-                Transfer.Visibility = TransferFromAmount.Visibility = Visibility.Hidden;
-                return;
-            }
-            else
+            if (!TransferAmount.Text.Equals("Amount:"))
             {
                 try
                 {
-                    if (TransferFromName.Content != null && TransferToName != null)
+                    if (TransferFromName.Content != null && TransferToName.Content != null || Convert.ToDouble(TransferAmount.Text) == 0)
                     {
-                        TransferFromAmount.Content = Convert.ToDouble(TransferAmount.Text);
+                        TransferFromAmount.Content = TransferAmount.Text;
                         Transfer.Content = Math.Round((Show.FromValue * Convert.ToDouble(TransferFromAmount.Content)) / Show.ToValue, 2) + " " + TransferToName.Content;
                         Transfer.Visibility = TransferFromAmount.Visibility = Visibility.Visible;
+                    }
+                    else if (TransferFromName.Content == null)
+                    {
+                        TransferFromAmount.Content = TransferAmount.Text;
+                        TransferFromAmount.Visibility = Visibility.Visible;
+                        // событие, если первое == 0
+                    }
+                    else if (TransferToName.Content == null)
+                    {
+                        TransferFromAmount.Content = TransferAmount.Text;
+                        TransferFromAmount.Visibility = Visibility.Visible;
+                        // событие, если второе == 0
                     }
                 }
                 catch (Exception ex)
@@ -179,35 +193,24 @@ namespace Currency_Calc
 
         private void TransferAmount_KeyDown(object sender, System.Windows.Input.KeyEventArgs e)
         {
-            if (TransferAmount.Text.Length == 0)
+            if (e.Key >= Key.D0 && e.Key <= Key.D9 || e.Key >= Key.NumPad0 && e.Key <= Key.NumPad9)
             {
-                TransferAmount.Text = "Amount:";
-                Transfer.Content = TransferFromAmount.Content = null;
-                Transfer.Visibility = TransferFromAmount.Visibility = Visibility.Hidden;
-            }
-            else
-            {
-                if (e.Key >= Key.D0 && e.Key <= Key.D9 || e.Key >= Key.NumPad0 && e.Key <= Key.NumPad9)
+                if (TransferAmount.Text.Equals("Amount:"))
                 {
-                    double num = 0;
-                    if (double.TryParse(TransferAmount.Text, out num))
-                    {
-
-                    }
-                    else
-                    {
-                        TransferAmount.Text = null;
-                    }
-                }
-
-                else if (e.Key == Key.Tab)
-                {
-                    
+                    TransferAmount.Text = TransferAmount.Text.Remove(0, 7);
                 }
                 else
                 {
-                    e.Handled = true;
+                    
                 }
+            }
+            else if (e.Key == Key.Tab)
+            {
+
+            }
+            else
+            {
+                e.Handled = true;
             }
         }
 
@@ -264,6 +267,10 @@ namespace Currency_Calc
                             }
                         }
                     }
+                    else
+                    {
+                        // событие, если второй == 0
+                    }
                 }
                 else
                 {
@@ -274,7 +281,7 @@ namespace Currency_Calc
             else if (TransferFrom.Text.Length <= 2)
             {
                 TransferFromName.Content = Transfer.Content = null;
-                TransferFromName.Visibility = Transfer.Visibility = TransferFromAmount.Visibility = Visibility.Hidden;
+                TransferFromName.Visibility = Transfer.Visibility = Visibility.Hidden;
                 Show.FromValue = 0;
             }
         }
@@ -306,6 +313,10 @@ namespace Currency_Calc
                             }
                         }
                     }
+                    else
+                    {
+                        // событие, если первый == 0
+                    }
                 }
                 else
                 {
@@ -316,7 +327,7 @@ namespace Currency_Calc
             else if (TransferTo.Text.Length <= 2)
             {
                 TransferToName.Content = Transfer.Content = null;
-                TransferToName.Visibility = Transfer.Visibility = TransferFromAmount.Visibility = Visibility.Hidden;
+                TransferToName.Visibility = Transfer.Visibility = Visibility.Hidden;
                 Show.ToValue = 0;
             }
         }
