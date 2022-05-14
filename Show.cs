@@ -52,5 +52,24 @@ namespace Currency_Calc
         {
             set { Do.Valuta = value; }
         }
+
+        public double FromValue
+        {
+            get { return Do.FromValue; }
+            set { Do.FromValue = value; }
+        }
+        public double ToValue
+        {
+            get { return Do.ToValue; }
+            set { Do.ToValue = value; }
+        }
+        public string From
+        {
+            set { Do.From = value; }
+        }
+        public string To
+        {
+            set { Do.To = value; }
+        }
     }
 }

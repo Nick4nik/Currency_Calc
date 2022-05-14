@@ -10,8 +10,8 @@ namespace Currency_Calc
     /// </summary>
     public class Do : PropertyChangedBase
     {
-        protected double usd, eur, rub, val;
-        protected string valuta;
+        protected double usd, eur, rub, val, fromvalue, tovalue;
+        protected string valuta, to, from;
 
         public double USD
         {
@@ -75,6 +75,52 @@ namespace Currency_Calc
                 valuta = value;
             }
         }
+        public double FromValue
+        {
+            get
+            {
+                ValutaGetRate();
+                return fromvalue;
+            }
+            set
+            {
+                fromvalue = value;
+            }
+        }
+        public double ToValue
+        {
+            get
+            {
+                ValutaGetRate();
+                return tovalue;
+            }
+            set
+            {
+                tovalue = value;
+            }
+        }
+        public string To
+        {
+            get
+            {
+                return to;
+            }
+            set
+            {
+                to = value;
+            }
+        }
+        public string From
+        {
+            get
+            {
+                return from;
+            }
+            set
+            {
+                from = value;
+            }
+        }
 
         public static class Document
         {
@@ -134,6 +180,16 @@ namespace Currency_Calc
                     {
                         XElement rate = currency.Element("rate");
                         Val = double.Parse(rate.Value, formatProvider);
+                    }
+                    if (Convert.ToString(cc.Value) == To)
+                    {
+                        XElement rate = currency.Element("rate");
+                        ToValue = double.Parse(rate.Value, formatProvider);
+                    }
+                    if (Convert.ToString(cc.Value) == From)
+                    {
+                        XElement rate = currency.Element("rate");
+                        FromValue = double.Parse(rate.Value, formatProvider);
                     }
                 }
             }
