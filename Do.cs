@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Data.SqlClient;
 using System.Globalization;
+using System.Linq;
 using System.Threading.Tasks;
 using System.Xml.Linq;
 
@@ -17,8 +19,16 @@ namespace Currency_Calc
         {
             get
             {
-                GetRate();
-                return usd;
+                using (RatesDbEntities DB = new RatesDbEntities())
+                {
+                    GetRate();
+                    var value = DB.Value.Where(c => c.Val != 0 && c.Number == 1).FirstOrDefault();
+                    if (value == null)
+                    {
+                        return 0;
+                    }
+                    return (double)value.Val;
+                }
             }
             set
             {
@@ -30,8 +40,15 @@ namespace Currency_Calc
         {
             get
             {
-                GetRate();
-                return eur;
+                using (RatesDbEntities DB = new RatesDbEntities())
+                {
+                    var value = DB.Value.Where(c => c.Val != 0 && c.Number == 2).FirstOrDefault();
+                    if (value == null)
+                    {
+                        return 0;
+                    }
+                    return (double)value.Val;
+                }
             }
             set
             {
@@ -43,8 +60,16 @@ namespace Currency_Calc
         {
             get
             {
-                GetRate();
-                return rub;
+                using (RatesDbEntities DB = new RatesDbEntities())
+                {
+                    GetRate();
+                    var value = DB.Value.Where(c => c.Val != 0 && c.Number == 3).FirstOrDefault();
+                    if (value == null)
+                    {
+                        return 0;
+                    }
+                    return (double)value.Val;
+                }
             }
             set
             {
@@ -79,7 +104,6 @@ namespace Currency_Calc
         {
             get
             {
-                ValutaGetRate();
                 return fromvalue;
             }
             set
@@ -91,7 +115,6 @@ namespace Currency_Calc
         {
             get
             {
-                ValutaGetRate();
                 return tovalue;
             }
             set
@@ -126,76 +149,151 @@ namespace Currency_Calc
         {
             public static XDocument xdoc = XDocument.Load(uri: "https://bank.gov.ua/NBUStatService/v1/statdirectory/exchange");
         }
-
+        
         public async Task GetRate()
         {
-            try
+            using (RatesDbEntities DB = new RatesDbEntities())
             {
-                NumberFormatInfo formatProvider = new NumberFormatInfo();
-                formatProvider.NumberDecimalSeparator = ".";
-                
-                XElement root = Document.xdoc.Element("exchange");
-                if (root == null)
-                    return;
-                foreach (XElement currency in root.Elements("currency"))
+                try
                 {
-                    XElement r030 = currency.Element("r030");
+                    NumberFormatInfo formatProvider = new NumberFormatInfo();
+                    formatProvider.NumberDecimalSeparator = ".";
 
-                    if (Convert.ToInt32(r030.Value) == 840)
+                    XElement root = Document.xdoc.Element("exchange");
+                    if (root == null)
+                        return;
+                    foreach (XElement currency in root.Elements("currency"))
                     {
-                        XElement rate = currency.Element("rate");
-                        USD = Convert.ToDouble(rate.Value, formatProvider);
-                    }
-                    if (Convert.ToInt32(r030.Value) == 978)
-                    {
-                        XElement rate = currency.Element("rate");
-                        EUR = Convert.ToDouble(rate.Value, formatProvider);
-                    }
-                    if (Convert.ToInt32(r030.Value) == 643)
-                    {
-                        XElement rate = currency.Element("rate");
-                        RUB = double.Parse(rate.Value, formatProvider);
+                        XElement r030 = currency.Element("r030");
+
+                        if (Convert.ToInt32(r030.Value) == 840)
+                        {
+                            XElement rate = currency.Element("rate");
+                            USD = Convert.ToDouble(rate.Value, formatProvider);
+                            Rate rate1 = new Rate();
+                            Value value1 = new Value();
+                            string asd = currency.Element("cc").Value;
+                            var Val = DB.Rate.Where(s => s.Name == asd).FirstOrDefault();
+                            if (null == Val)
+                            {
+                                rate1.Name = Convert.ToString(currency.Element("cc").Value);
+                                value1.Val = Convert.ToDouble(rate.Value, formatProvider);
+                                value1.Number = 1;
+                                DB.Rate.Add(rate1);
+                                DB.Value.Add(value1);
+                                DB.SaveChanges();
+                            }
+                        }
+                        if (Convert.ToInt32(r030.Value) == 978)
+                        {
+                            XElement rate = currency.Element("rate");
+                            EUR = Convert.ToDouble(rate.Value, formatProvider);
+                            Rate rate1 = new Rate();
+                            Value value1 = new Value();
+                            string asd = currency.Element("cc").Value;
+                            var Val = DB.Rate.Where(s => s.Name == asd).FirstOrDefault();
+                            if (null == Val)
+                            {
+                                rate1.Name = Convert.ToString(currency.Element("cc").Value);
+                                value1.Val = Convert.ToDouble(rate.Value, formatProvider);
+                                value1.Number = 2;
+                                DB.Rate.Add(rate1);
+                                DB.Value.Add(value1);
+                                DB.SaveChanges();
+                            }
+                        }
+                        if (Convert.ToInt32(r030.Value) == 643)
+                        {
+                            XElement rate = currency.Element("rate");
+                            RUB = double.Parse(rate.Value, formatProvider);
+                            Rate rate1 = new Rate();
+                            Value value1 = new Value();
+                            string asd = currency.Element("cc").Value;
+                            var Val = DB.Rate.Where(s => s.Name == asd).FirstOrDefault();
+                            if (null == Val)
+                            {
+                                rate1.Name = Convert.ToString(currency.Element("cc").Value);
+                                value1.Val = Convert.ToDouble(rate.Value, formatProvider);
+                                value1.Number = 3;
+                                DB.Rate.Add(rate1);
+                                DB.Value.Add(value1);
+                                DB.SaveChanges();
+                            }
+                        }
                     }
                 }
-            }
-            catch (Exception)
-            {
+                catch (Exception)
+                {
 
+                }
             }
+            
         }
 
         public async Task ValutaGetRate()
         {
-            try
+            using (RatesDbEntities DB = new RatesDbEntities())
             {
-                NumberFormatInfo formatProvider = new NumberFormatInfo();
-                formatProvider.NumberDecimalSeparator = ".";
-                XElement root = Document.xdoc.Element("exchange");
-                if (root == null)
-                    return;
-                foreach (XElement currency in root.Elements("currency"))
+                try
                 {
-                    XElement cc = currency.Element("cc");
-                    if (Convert.ToString(cc.Value) == Valuta)
+                    NumberFormatInfo formatProvider = new NumberFormatInfo();
+                    formatProvider.NumberDecimalSeparator = ".";
+                    XElement root = Document.xdoc.Element("exchange");
+                    if (root == null)
+                        return;
+                    foreach (XElement currency in root.Elements("currency"))
                     {
-                        XElement rate = currency.Element("rate");
-                        Val = double.Parse(rate.Value, formatProvider);
-                    }
-                    if (Convert.ToString(cc.Value) == To)
-                    {
-                        XElement rate = currency.Element("rate");
-                        ToValue = double.Parse(rate.Value, formatProvider);
-                    }
-                    if (Convert.ToString(cc.Value) == From)
-                    {
-                        XElement rate = currency.Element("rate");
-                        FromValue = double.Parse(rate.Value, formatProvider);
+                        Rate rate1 = new Rate();
+                        Value value1 = new Value();
+                        XElement cc = currency.Element("cc");
+                        if (Convert.ToString(cc.Value) == Valuta)
+                        {
+                            XElement rate = currency.Element("rate");
+                            Val = double.Parse(rate.Value, formatProvider);
+                            string asd = currency.Element("cc").Value;
+                            var Val1 = DB.Rate.Where(s => s.Name == asd).FirstOrDefault();
+                            if (null == Val1)
+                            {
+                                rate1.Name = Convert.ToString(currency.Element("cc").Value);
+                                value1.Val = Convert.ToDouble(rate.Value, formatProvider);
+                            }
+                        }
+                        if (Convert.ToString(cc.Value) == To)
+                        {
+                            XElement rate = currency.Element("rate");
+                            ToValue = double.Parse(rate.Value, formatProvider);
+                            string asd = currency.Element("cc").Value;
+                            var Val1 = DB.Rate.Where(s => s.Name == asd).FirstOrDefault();
+                            if (null == Val1)
+                            {
+                                rate1.Name = Convert.ToString(currency.Element("cc").Value);
+                                value1.Val = Convert.ToDouble(rate.Value, formatProvider);
+                            }
+                        }
+                        if (Convert.ToString(cc.Value) == From)
+                        {
+                            XElement rate = currency.Element("rate");
+                            FromValue = double.Parse(rate.Value, formatProvider);
+                            string asd = currency.Element("cc").Value;
+                            var Val1 = DB.Rate.Where(s => s.Name == asd).FirstOrDefault();
+                            if (null == Val1)
+                            {
+                                rate1.Name = Convert.ToString(currency.Element("cc").Value);
+                                value1.Val = Convert.ToDouble(rate.Value, formatProvider);
+                            }
+                        }
+                        if (rate1.Name != null)
+                        {
+                            DB.Rate.Add(rate1);
+                            DB.Value.Add(value1);
+                            DB.SaveChanges();
+                        }
                     }
                 }
-            }
-            catch (Exception)
-            {
+                catch (Exception)
+                {
 
+                }
             }
         }
     }

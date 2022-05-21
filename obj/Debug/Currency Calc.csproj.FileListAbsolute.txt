@@ -14,3 +14,11 @@ F:\Visual Studio 2022\repos\Currency Calc\obj\Debug\Currency Calc.csproj.Generat
 F:\Visual Studio 2022\repos\Currency Calc\obj\Debug\Currency Calc.csproj.CoreCompileInputs.cache
 F:\Visual Studio 2022\repos\Currency Calc\obj\Debug\Currency Calc.exe
 F:\Visual Studio 2022\repos\Currency Calc\obj\Debug\Currency Calc.pdb
+F:\Visual Studio 2022\repos\Currency Calc\bin\Debug\EntityFramework.dll
+F:\Visual Studio 2022\repos\Currency Calc\bin\Debug\EntityFramework.SqlServer.dll
+F:\Visual Studio 2022\repos\Currency Calc\bin\Debug\EntityFramework.xml
+F:\Visual Studio 2022\repos\Currency Calc\bin\Debug\EntityFramework.SqlServer.xml
+F:\Visual Studio 2022\repos\Currency Calc\bin\Debug\ru\EntityFramework.resources.dll
+F:\Visual Studio 2022\repos\Currency Calc\bin\Debug\ru\EntityFramework.SqlServer.resources.dll
+F:\Visual Studio 2022\repos\Currency Calc\obj\Debug\Currency Calc_Content.g.cs
+F:\Visual Studio 2022\repos\Currency Calc\obj\Debug\Currency Calc.csproj.CopyComplete

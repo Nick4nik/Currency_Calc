@@ -13,16 +13,17 @@ namespace Currency_Calc
     {
         protected Show Show;
 
+        async void OnLoad(object sender, RoutedEventArgs e)
+        {
+            await Show.OnLoad(sender, e);
+        }
+
         public MainWindow()
         {
+            
             InitializeComponent();
             DataContext = Show = new Show();
             Currency.Focus();
-        }
-
-        private async void OnLoad(object sender, RoutedEventArgs e)
-        {
-            await Show.OnLoad(sender, e);
         }
 
         private void Amount_TextChanged(object sender, TextChangedEventArgs e)
@@ -143,7 +144,6 @@ namespace Currency_Calc
                 e.Handled = true;
             }
         }
-
 
         private void TransferAmount_LostFocus(object sender, RoutedEventArgs e)
         {

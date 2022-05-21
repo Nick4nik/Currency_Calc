@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Хранилище RatesDbModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Rate">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="numeric" Precision="18" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="3" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Value">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="numeric" Precision="18" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Val" Type="float" Nullable="false" />
+    <Property Name="IdRate" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="Number" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_Rate_Rate">
+    <End Role="Rate" Type="Self.Rate" Multiplicity="1" />
+    <End Role="Rate1" Type="Self.Rate" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Rate">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Rate1">
+        <PropertyRef Name="Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Value_Rate">
+    <End Role="Rate" Type="Self.Rate" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Value" Type="Self.Value" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Rate">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Value">
+        <PropertyRef Name="IdRate" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="Хранилище RatesDbModelContainer">
+    <EntitySet Name="Rate" EntityType="Self.Rate" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Value" EntityType="Self.Value" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_Rate_Rate" Association="Self.FK_Rate_Rate">
+      <End Role="Rate" EntitySet="Rate" />
+      <End Role="Rate1" EntitySet="Rate" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Value_Rate" Association="Self.FK_Value_Rate">
+      <End Role="Rate" EntitySet="Rate" />
+      <End Role="Value" EntitySet="Value" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

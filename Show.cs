@@ -28,7 +28,7 @@ namespace Currency_Calc
 
         public async Task ValutaGetRate()
         {
-            await Do.ValutaGetRate();
+            Do.ValutaGetRate();
         }
 
         public double USD
@@ -65,10 +65,12 @@ namespace Currency_Calc
         }
         public string From
         {
+            get { return Do.From; }
             set { Do.From = value; }
         }
         public string To
         {
+            get { return Do.To; }
             set { Do.To = value; }
         }
     }
