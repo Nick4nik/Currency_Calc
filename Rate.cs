@@ -25,7 +25,5 @@ namespace Currency_Calc
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Value> Value { get; set; }
-        public virtual Rate Rate1 { get; set; }
-        public virtual Rate Rate2 { get; set; }
     }
 }

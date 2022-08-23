@@ -13,10 +13,10 @@ namespace Currency_Calc
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class RatesDbEntities : DbContext
+    public partial class RatesDbEntitiesEntities1 : DbContext
     {
-        public RatesDbEntities()
-            : base("name=RatesDbEntities")
+        public RatesDbEntitiesEntities1()
+            : base("name=RatesDbEntitiesEntities1")
         {
         }
     

@@ -22,3 +22,27 @@ F:\Visual Studio 2022\repos\Currency Calc\bin\Debug\ru\EntityFramework.resources
 F:\Visual Studio 2022\repos\Currency Calc\bin\Debug\ru\EntityFramework.SqlServer.resources.dll
 F:\Visual Studio 2022\repos\Currency Calc\obj\Debug\Currency Calc_Content.g.cs
 F:\Visual Studio 2022\repos\Currency Calc\obj\Debug\Currency Calc.csproj.CopyComplete
+C:\Users\Nick4nik\Source\Repos\Currency_Calc\bin\Debug\Currency Calc.exe.config
+C:\Users\Nick4nik\Source\Repos\Currency_Calc\bin\Debug\Currency Calc.exe
+C:\Users\Nick4nik\Source\Repos\Currency_Calc\bin\Debug\Currency Calc.pdb
+C:\Users\Nick4nik\Source\Repos\Currency_Calc\bin\Debug\EntityFramework.dll
+C:\Users\Nick4nik\Source\Repos\Currency_Calc\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\Nick4nik\Source\Repos\Currency_Calc\bin\Debug\EntityFramework.xml
+C:\Users\Nick4nik\Source\Repos\Currency_Calc\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\Nick4nik\Source\Repos\Currency_Calc\bin\Debug\ru\EntityFramework.resources.dll
+C:\Users\Nick4nik\Source\Repos\Currency_Calc\bin\Debug\ru\EntityFramework.SqlServer.resources.dll
+C:\Users\Nick4nik\Source\Repos\Currency_Calc\obj\Debug\Currency Calc.csproj.AssemblyReference.cache
+C:\Users\Nick4nik\Source\Repos\Currency_Calc\obj\Debug\Currency Calc.csproj.SuggestedBindingRedirects.cache
+C:\Users\Nick4nik\Source\Repos\Currency_Calc\obj\Debug\MainWindow.g.cs
+C:\Users\Nick4nik\Source\Repos\Currency_Calc\obj\Debug\App.g.cs
+C:\Users\Nick4nik\Source\Repos\Currency_Calc\obj\Debug\Currency Calc_Content.g.cs
+C:\Users\Nick4nik\Source\Repos\Currency_Calc\obj\Debug\Currency Calc_MarkupCompile.cache
+C:\Users\Nick4nik\Source\Repos\Currency_Calc\obj\Debug\Currency Calc_MarkupCompile.lref
+C:\Users\Nick4nik\Source\Repos\Currency_Calc\obj\Debug\MainWindow.baml
+C:\Users\Nick4nik\Source\Repos\Currency_Calc\obj\Debug\Currency Calc.g.resources
+C:\Users\Nick4nik\Source\Repos\Currency_Calc\obj\Debug\Currency_Calc.Properties.Resources.resources
+C:\Users\Nick4nik\Source\Repos\Currency_Calc\obj\Debug\Currency Calc.csproj.GenerateResource.cache
+C:\Users\Nick4nik\Source\Repos\Currency_Calc\obj\Debug\Currency Calc.csproj.CoreCompileInputs.cache
+C:\Users\Nick4nik\Source\Repos\Currency_Calc\obj\Debug\Currency Calc.csproj.CopyComplete
+C:\Users\Nick4nik\Source\Repos\Currency_Calc\obj\Debug\Currency Calc.exe
+C:\Users\Nick4nik\Source\Repos\Currency_Calc\obj\Debug\Currency Calc.pdb

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Data.Entity;
 using System.Data.SqlClient;
 using System.Globalization;
 using System.Linq;
@@ -19,7 +20,7 @@ namespace Currency_Calc
         {
             get
             {
-                using (RatesDbEntities DB = new RatesDbEntities())
+                using (RatesDbEntitiesEntities1 DB = new RatesDbEntitiesEntities1())
                 {
                     GetRate();
                     var value = DB.Value.Where(c => c.Val != 0 && c.Number == 1).FirstOrDefault();
@@ -40,7 +41,7 @@ namespace Currency_Calc
         {
             get
             {
-                using (RatesDbEntities DB = new RatesDbEntities())
+                using (RatesDbEntitiesEntities1 DB = new RatesDbEntitiesEntities1())
                 {
                     var value = DB.Value.Where(c => c.Val != 0 && c.Number == 2).FirstOrDefault();
                     if (value == null)
@@ -60,7 +61,7 @@ namespace Currency_Calc
         {
             get
             {
-                using (RatesDbEntities DB = new RatesDbEntities())
+                using (RatesDbEntitiesEntities1 DB = new RatesDbEntitiesEntities1())
                 {
                     GetRate();
                     var value = DB.Value.Where(c => c.Val != 0 && c.Number == 3).FirstOrDefault();
@@ -152,7 +153,7 @@ namespace Currency_Calc
         
         public async Task GetRate()
         {
-            using (RatesDbEntities DB = new RatesDbEntities())
+            using (RatesDbEntitiesEntities1 DB = new RatesDbEntitiesEntities1())
             {
                 try
                 {
@@ -172,8 +173,8 @@ namespace Currency_Calc
                             USD = Convert.ToDouble(rate.Value, formatProvider);
                             Rate rate1 = new Rate();
                             Value value1 = new Value();
-                            string asd = currency.Element("cc").Value;
-                            var Val = DB.Rate.Where(s => s.Name == asd).FirstOrDefault();
+                            string value = currency.Element("cc").Value;
+                            var Val = DB.Rate.Where(s => s.Name == value).FirstOrDefault();
                             if (null == Val)
                             {
                                 rate1.Name = Convert.ToString(currency.Element("cc").Value);
@@ -190,8 +191,8 @@ namespace Currency_Calc
                             EUR = Convert.ToDouble(rate.Value, formatProvider);
                             Rate rate1 = new Rate();
                             Value value1 = new Value();
-                            string asd = currency.Element("cc").Value;
-                            var Val = DB.Rate.Where(s => s.Name == asd).FirstOrDefault();
+                            string value = currency.Element("cc").Value;
+                            var Val = DB.Rate.Where(s => s.Name == value).FirstOrDefault();
                             if (null == Val)
                             {
                                 rate1.Name = Convert.ToString(currency.Element("cc").Value);
@@ -208,8 +209,8 @@ namespace Currency_Calc
                             RUB = double.Parse(rate.Value, formatProvider);
                             Rate rate1 = new Rate();
                             Value value1 = new Value();
-                            string asd = currency.Element("cc").Value;
-                            var Val = DB.Rate.Where(s => s.Name == asd).FirstOrDefault();
+                            string value = currency.Element("cc").Value;
+                            var Val = DB.Rate.Where(s => s.Name == value).FirstOrDefault();
                             if (null == Val)
                             {
                                 rate1.Name = Convert.ToString(currency.Element("cc").Value);
@@ -232,7 +233,7 @@ namespace Currency_Calc
 
         public async Task ValutaGetRate()
         {
-            using (RatesDbEntities DB = new RatesDbEntities())
+            using (RatesDbEntitiesEntities1 DB = new RatesDbEntitiesEntities1())
             {
                 try
                 {
@@ -250,8 +251,8 @@ namespace Currency_Calc
                         {
                             XElement rate = currency.Element("rate");
                             Val = double.Parse(rate.Value, formatProvider);
-                            string asd = currency.Element("cc").Value;
-                            var Val1 = DB.Rate.Where(s => s.Name == asd).FirstOrDefault();
+                            string value = currency.Element("cc").Value;
+                            var Val1 = await DB.Rate.Where(s => s.Name == value).FirstOrDefaultAsync();
                             if (null == Val1)
                             {
                                 rate1.Name = Convert.ToString(currency.Element("cc").Value);
@@ -262,8 +263,8 @@ namespace Currency_Calc
                         {
                             XElement rate = currency.Element("rate");
                             ToValue = double.Parse(rate.Value, formatProvider);
-                            string asd = currency.Element("cc").Value;
-                            var Val1 = DB.Rate.Where(s => s.Name == asd).FirstOrDefault();
+                            string value = currency.Element("cc").Value;
+                            var Val1 = DB.Rate.Where(s => s.Name == value).FirstOrDefault();
                             if (null == Val1)
                             {
                                 rate1.Name = Convert.ToString(currency.Element("cc").Value);
@@ -274,8 +275,8 @@ namespace Currency_Calc
                         {
                             XElement rate = currency.Element("rate");
                             FromValue = double.Parse(rate.Value, formatProvider);
-                            string asd = currency.Element("cc").Value;
-                            var Val1 = DB.Rate.Where(s => s.Name == asd).FirstOrDefault();
+                            string value = currency.Element("cc").Value;
+                            var Val1 = DB.Rate.Where(s => s.Name == value).FirstOrDefault();
                             if (null == Val1)
                             {
                                 rate1.Name = Convert.ToString(currency.Element("cc").Value);

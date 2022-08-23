@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-  <EntityContainerMapping StorageEntityContainer="Хранилище RatesDbModelContainer" CdmEntityContainer="RatesDbEntities">
+  <EntityContainerMapping StorageEntityContainer="Хранилище RatesDbEntitiesModelContainer" CdmEntityContainer="RatesDbEntitiesEntities1">
     <EntitySetMapping Name="Rate">
-      <EntityTypeMapping TypeName="RatesDbModel.Rate">
+      <EntityTypeMapping TypeName="RatesDbEntitiesModel.Rate">
         <MappingFragment StoreEntitySet="Rate">
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="Name" ColumnName="Name" />
@@ -10,12 +10,12 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Value">
-      <EntityTypeMapping TypeName="RatesDbModel.Value">
+      <EntityTypeMapping TypeName="RatesDbEntitiesModel.Value">
         <MappingFragment StoreEntitySet="Value">
-          <ScalarProperty Name="Number" ColumnName="Number" />
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="Val" ColumnName="Val" />
           <ScalarProperty Name="IdRate" ColumnName="IdRate" />
+          <ScalarProperty Name="Number" ColumnName="Number" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
